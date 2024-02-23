@@ -4,6 +4,11 @@ extends Control
 const MAX_MESSAGES:int = 50
 var line:PackedScene = load("res://addons/very-simple-twitch/chat/vst_chat_dock_line.tscn")
 
+@onready var message_line_edit = $VBoxContainer/VBoxContainer/HBoxContainer/MessageLineEdit
+@onready var send_button = $VBoxContainer/VBoxContainer/HBoxContainer/SendButton
+@onready var h_box_container = $VBoxContainer/VBoxContainer/HBoxContainer
+
+
 var twitch_chat: TwitchChat:
 	get:
 		if twitch_chat == null:
@@ -148,6 +153,7 @@ func show_chat_layout():
 	clear_button.visible = true
 	channel_line_edit.visible = false
 	connect_button.visible = false
+	h_box_container.visible = true
 	
 func show_connect_layout():
 	disconnect_button.visible = false
@@ -156,6 +162,7 @@ func show_connect_layout():
 	channel_line_edit.visible = true
 	connect_button.visible = true
 	connect_button.disabled = false
+	h_box_container.visible = false
 
 class EmoteLocation extends RefCounted:
 	var id : String
@@ -169,3 +176,18 @@ class EmoteLocation extends RefCounted:
 
 	static func smaller(a: EmoteLocation, b: EmoteLocation):
 		return a.start < b.start
+
+
+func _on_send_button_pressed():
+	twitch_chat.send_message(message_line_edit.text)
+	message_line_edit.text = ""
+
+
+func _on_gui_input(event):
+	if (event is InputEventKey and (event as InputEventKey).keycode == KEY_ENTER):
+		twitch_chat.send_message(message_line_edit.text)
+		message_line_edit.text = ""
+
+
+func _on_message_line_edit_text_changed(new_text):
+	send_button.disabled = !new_text or len(new_text) == 0

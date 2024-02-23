@@ -63,7 +63,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MessageLineEdit" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SendButton" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "SEND"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer/MessageLineEdit" to="." method="_on_message_line_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
