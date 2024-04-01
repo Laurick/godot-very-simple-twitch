@@ -33,6 +33,10 @@ var twitch_chat: TwitchChat:
 
 @onready var message_layout = $TabContainer/Chat/MessageLayout
 
+@onready var send_message_button = %SendMessageButton
+
+@onready var message_line_edit = %MessageLineEdit
+
 func _ready():
 	support_button.icon = get_theme_icon("Heart", "EditorIcons")
 	support_button.tooltip_text = "Support me on Ko-fi"
@@ -164,23 +168,6 @@ func _on_auth_connection_check_toggled(toggled_on):
 	else:
 		auth_connection_check.text = "Anon"
 
-class EmoteLocation extends RefCounted:
-	var id : String
-	var start : int
-	var end : int
-
-	func _init(emote_id, start_idx, end_idx):
-		self.id = emote_id
-		self.start = start_idx
-		self.end = end_idx
-
-	static func smaller(a: EmoteLocation, b: EmoteLocation):
-		return a.start < b.start
-
-
-@onready var send_message_button = %SendMessageButton
-@onready var message_line_edit = %MessageLineEdit
-
 func _on_message_line_edit_text_submitted(new_text):
 	send_message(new_text)
 	message_line_edit.text = ""
@@ -198,3 +185,16 @@ func send_message(message:String):
 
 func _on_message_line_edit_text_changed(new_text):
 	send_message_button.disabled = len(new_text) == 0
+	
+class EmoteLocation extends RefCounted:
+	var id : String
+	var start : int
+	var end : int
+
+	func _init(emote_id, start_idx, end_idx):
+		self.id = emote_id
+		self.start = start_idx
+		self.end = end_idx
+
+	static func smaller(a: EmoteLocation, b: EmoteLocation):
+		return a.start < b.start
