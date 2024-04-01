@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/very-simple-twitch/chat/vst_chat_dock.gd" id="1_fkddh"]
 
-[sub_resource type="Image" id="Image_3s2jh"]
+[sub_resource type="Image" id="Image_oi58q"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -11,8 +11,8 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_7eelb"]
-image = SubResource("Image_3s2jh")
+[sub_resource type="ImageTexture" id="ImageTexture_ppgbd"]
+image = SubResource("Image_oi58q")
 
 [node name="VstChatDock" type="Control"]
 layout_mode = 3
@@ -37,28 +37,55 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Chat"]
 layout_mode = 2
 
-[node name="ChannelLineEdit" type="LineEdit" parent="TabContainer/Chat/HBoxContainer"]
+[node name="LoginLayout" type="Control" parent="TabContainer/Chat/HBoxContainer"]
+layout_mode = 2
+
+[node name="ChannelLineEdit" type="LineEdit" parent="TabContainer/Chat/HBoxContainer/LoginLayout"]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 4.0
+offset_right = 991.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 placeholder_text = "Channel name"
 
-[node name="ConnectButton" type="Button" parent="TabContainer/Chat/HBoxContainer"]
+[node name="ConnectButton" type="Button" parent="TabContainer/Chat/HBoxContainer/LoginLayout"]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 995.0
+offset_right = 1079.0
+offset_bottom = 31.0
 disabled = true
 text = "CONNECT"
 
-[node name="ClearButton" type="Button" parent="TabContainer/Chat/HBoxContainer"]
+[node name="AuthConnectionCheck" type="CheckBox" parent="TabContainer/Chat/HBoxContainer/LoginLayout"]
 unique_name_in_owner = true
+layout_mode = 2
+offset_left = 1083.0
+offset_right = 1152.0
+offset_bottom = 31.0
+text = "Anon"
+flat = true
+expand_icon = true
+
+[node name="LoggedControl" type="Control" parent="TabContainer/Chat/HBoxContainer"]
 visible = false
 layout_mode = 2
+
+[node name="ClearButton" type="Button" parent="TabContainer/Chat/HBoxContainer/LoggedControl"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = -4.0
+offset_right = 99.0
+offset_bottom = 31.0
 text = "CLEAR CHAT"
 
-[node name="DisconnectButton" type="Button" parent="TabContainer/Chat/HBoxContainer"]
+[node name="DisconnectButton" type="Button" parent="TabContainer/Chat/HBoxContainer/LoggedControl"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+offset_left = -4.0
+offset_right = 106.0
+offset_bottom = 31.0
 text = "DISCONNECT"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Chat"]
@@ -84,6 +111,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="MessageLayout" type="HBoxContainer" parent="TabContainer/Chat"]
+visible = false
+layout_mode = 2
+
+[node name="MessageLineEdit" type="LineEdit" parent="TabContainer/Chat/MessageLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SendMessageButton" type="Button" parent="TabContainer/Chat/MessageLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "SEND"
+
 [node name="Settings" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
@@ -103,11 +144,15 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 tooltip_text = "Support me on Ko-fi"
-icon = SubResource("ImageTexture_7eelb")
+icon = SubResource("ImageTexture_ppgbd")
 flat = true
 
-[connection signal="text_changed" from="TabContainer/Chat/HBoxContainer/ChannelLineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="pressed" from="TabContainer/Chat/HBoxContainer/ConnectButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="TabContainer/Chat/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
-[connection signal="pressed" from="TabContainer/Chat/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="text_changed" from="TabContainer/Chat/HBoxContainer/LoginLayout/ChannelLineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="TabContainer/Chat/HBoxContainer/LoginLayout/ConnectButton" to="." method="_on_button_pressed"]
+[connection signal="toggled" from="TabContainer/Chat/HBoxContainer/LoginLayout/AuthConnectionCheck" to="." method="_on_auth_connection_check_toggled"]
+[connection signal="pressed" from="TabContainer/Chat/HBoxContainer/LoggedControl/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="TabContainer/Chat/HBoxContainer/LoggedControl/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="text_changed" from="TabContainer/Chat/MessageLayout/MessageLineEdit" to="." method="_on_message_line_edit_text_changed"]
+[connection signal="text_submitted" from="TabContainer/Chat/MessageLayout/MessageLineEdit" to="." method="_on_message_line_edit_text_submitted"]
+[connection signal="pressed" from="TabContainer/Chat/MessageLayout/SendMessageButton" to="." method="_on_send_message_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/SupportButton" to="." method="_on_support_button_pressed"]

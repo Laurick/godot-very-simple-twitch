@@ -25,6 +25,14 @@ var twitch_chat: TwitchChat:
 
 @onready var disconnect_button:Button = %DisconnectButton
 
+@onready var auth_connection_check:CheckBox = %AuthConnectionCheck
+
+@onready var login_layout = $TabContainer/Chat/HBoxContainer/LoginLayout
+
+@onready var logged_control = $TabContainer/Chat/HBoxContainer/LoggedControl
+
+@onready var message_layout = $TabContainer/Chat/MessageLayout
+
 func _ready():
 	support_button.icon = get_theme_icon("Heart", "EditorIcons")
 	support_button.tooltip_text = "Support me on Ko-fi"
@@ -34,10 +42,18 @@ func _on_button_pressed():
 	twitch_chat.OnMessage.connect(create_chatter_msg)
 	twitch_chat.OnFailure.connect(on_error)
 	
-	twitch_chat.login_anon(channel_line_edit.text)
 	connect_button.disabled = true
 	channel_line_edit.editable = false
-
+	
+	if auth_connection_check.toggle_mode:
+		twitch_chat.login_anon(channel_line_edit.text)
+	else:
+		var _twitch_api = TwitchAPI.new()
+		add_child(_twitch_api)
+		_twitch_api.initiate_twitch_auth()
+		var channel_info = await _twitch_api.token_received
+		twitch_chat.login(channel_info)
+	
 func _on_clear_button_pressed():
 	clear_all_messages()
 	
@@ -131,18 +147,22 @@ func clear_all_messages():
 		chat_layout.remove_child(childen)
 
 func show_chat_layout():
-	disconnect_button.visible = true
-	clear_button.visible = true
-	channel_line_edit.visible = false
-	connect_button.visible = false
+	logged_control.visible = true
+	login_layout.visible = false
+	message_layout.visible = auth_connection_check.toggle_mode
 	
 func show_connect_layout():
-	disconnect_button.visible = false
-	clear_button.visible = false
+	logged_control.visible = false
+	
+	login_layout.visible = true
 	channel_line_edit.editable = true
-	channel_line_edit.visible = true
-	connect_button.visible = true
 	connect_button.disabled = false
+
+func _on_auth_connection_check_toggled(toggled_on):
+	if toggled_on:
+		auth_connection_check.text = "Auth"
+	else:
+		auth_connection_check.text = "Anon"
 
 class EmoteLocation extends RefCounted:
 	var id : String
@@ -156,3 +176,25 @@ class EmoteLocation extends RefCounted:
 
 	static func smaller(a: EmoteLocation, b: EmoteLocation):
 		return a.start < b.start
+
+
+@onready var send_message_button = %SendMessageButton
+@onready var message_line_edit = %MessageLineEdit
+
+func _on_message_line_edit_text_submitted(new_text):
+	send_message(new_text)
+	message_line_edit.text = ""
+
+
+func _on_send_message_button_pressed():
+	if len(message_line_edit) > 0:
+		send_message(message_line_edit.text)
+		message_line_edit.text = ""
+
+
+func send_message(message:String):
+	twitch_chat.send_message(message)
+
+
+func _on_message_line_edit_text_changed(new_text):
+	send_message_button.disabled = len(new_text) == 0
