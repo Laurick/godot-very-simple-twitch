@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://rr154c1ykwoh"]
+[gd_scene format=3 uid="uid://rr154c1ykwoh"]
 
 [ext_resource type="PackedScene" uid="uid://yhuh0huitds8" path="res://example/TwitchChat.tscn" id="1_o6alc"]
-[ext_resource type="Script" path="res://example/demo.gd" id="1_uj756"]
+[ext_resource type="Script" uid="uid://f5sl1ewqq4b8" path="res://example/demo.gd" id="1_uj756"]
 [ext_resource type="Texture2D" uid="uid://yarcej88qjri" path="res://example/arrow_down.svg" id="2_nmg8t"]
 
-[node name="Demo" type="Control"]
+[node name="Demo" type="Control" unique_id=1729316565]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uj756")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=623392809]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,26 +21,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=622752535]
 unique_name_in_owner = true
 layout_mode = 2
 current_tab = 0
 
-[node name="Oauth Connection" type="PanelContainer" parent="VBoxContainer/TabContainer"]
+[node name="Oauth Connection" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=127057648]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Oauth Connection"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Oauth Connection" unique_id=982155701]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="OauthConnectionLayout" type="VBoxContainer" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer"]
+[node name="OauthConnectionLayout" type="VBoxContainer" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer" unique_id=515079540]
 layout_mode = 2
 
-[node name="OauthTitleToggle" type="Button" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout"]
+[node name="OauthTitleToggle" type="Button" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout" unique_id=909082345]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
@@ -49,7 +49,7 @@ text = "Get Token and login to channel"
 icon = ExtResource("2_nmg8t")
 alignment = 0
 
-[node name="Description" type="RichTextLabel" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout"]
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout" unique_id=1009996764]
 layout_mode = 2
 bbcode_enabled = true
 text = "You can use [color=#d2a8ff] VerySimpleTwitch.get_token_and_login_chat()[/color] to retrieve the token and automatically login to the twitch chat.
@@ -57,31 +57,31 @@ text = "You can use [color=#d2a8ff] VerySimpleTwitch.get_token_and_login_chat()[
 | [color=gray]Note: You will need to set up the CLIENT_ID in the Settings tab and configure the Twitch app accordingly."
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout" unique_id=1673986150]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="LoginToken" type="Button" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout"]
+[node name="LoginToken" type="Button" parent="VBoxContainer/TabContainer/Oauth Connection/MarginContainer/OauthConnectionLayout" unique_id=263518094]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Get Token and Login Chat"
 
-[node name="Anonymous Connection" type="PanelContainer" parent="VBoxContainer/TabContainer"]
+[node name="Anonymous Connection" type="PanelContainer" parent="VBoxContainer/TabContainer" unique_id=136215854]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Anonymous Connection"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/Anonymous Connection" unique_id=2123027003]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="AnonymousConnectionLayout" type="VBoxContainer" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer"]
+[node name="AnonymousConnectionLayout" type="VBoxContainer" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer" unique_id=1861377251]
 layout_mode = 2
 
-[node name="AnonymousTitleToggle" type="Button" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout"]
+[node name="AnonymousTitleToggle" type="Button" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout" unique_id=169063248]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
@@ -90,61 +90,61 @@ text = "Simple anonymous connection"
 icon = ExtResource("2_nmg8t")
 alignment = 0
 
-[node name="Description" type="RichTextLabel" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout"]
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout" unique_id=1167791463]
 layout_mode = 2
 bbcode_enabled = true
 text = "This is the easiest way to use the plugin. You can use [color=#d2a8ff]VerySimpleTwitch.login_chat_anon(\"channel_name\")[/color] to connect to the channel without needing a token or any settings customization."
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout" unique_id=185823364]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="LoginChat" type="VBoxContainer" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout"]
+[node name="LoginChat" type="VBoxContainer" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout" unique_id=480905410]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat" unique_id=2111661901]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat/HBoxContainer" unique_id=1481101646]
 layout_mode = 2
 text = "Channel Name: "
 
-[node name="ChannelName" type="LineEdit" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat/HBoxContainer"]
+[node name="ChannelName" type="LineEdit" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat/HBoxContainer" unique_id=1818142663]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 placeholder_text = "MyChannelName"
 
-[node name="LoginAnon" type="Button" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat"]
+[node name="LoginAnon" type="Button" parent="VBoxContainer/TabContainer/Anonymous Connection/MarginContainer/AnonymousConnectionLayout/LoginChat" unique_id=1529951762]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Login Anon"
 
-[node name="LoggedLayout" type="HBoxContainer" parent="VBoxContainer"]
+[node name="LoggedLayout" type="HBoxContainer" parent="VBoxContainer" unique_id=1012588264]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="LogoutButton" type="Button" parent="VBoxContainer/LoggedLayout"]
+[node name="LogoutButton" type="Button" parent="VBoxContainer/LoggedLayout" unique_id=178108649]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Logout"
 
-[node name="ClearChar" type="Button" parent="VBoxContainer/LoggedLayout"]
+[node name="ClearChar" type="Button" parent="VBoxContainer/LoggedLayout" unique_id=988880843]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Clear chat"
 
-[node name="ConnectedLabel" type="Label" parent="VBoxContainer"]
+[node name="ConnectedLabel" type="Label" parent="VBoxContainer" unique_id=225562942]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Connected to channel"
 
-[node name="TwitchChat" parent="VBoxContainer" instance=ExtResource("1_o6alc")]
+[node name="TwitchChat" parent="VBoxContainer" unique_id=1641158127 instance=ExtResource("1_o6alc")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

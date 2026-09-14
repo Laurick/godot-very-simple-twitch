@@ -1,11 +1,21 @@
 class_name VSTChatContainer extends VBoxContainer
 
-var msg_node: PackedScene = preload("res://example/ChatMessage.tscn")
+const msg_node: PackedScene = preload("res://example/ChatMessage.tscn")
+const system_node: PackedScene = preload("res://example/SystemMessage.tscn")
+
 @onready var scroll_container = $Chat/ScrollContainer
 @onready var chat_message_container = $Chat/ScrollContainer/ChatMessageContainer
 
 func _ready():
 	VerySimpleTwitch.chat_message_received.connect(create_chatter_msg)
+	VerySimpleTwitch.event_happened.connect(create_event_msg)
+
+func create_event_msg(type:String, data:Dictionary):
+	var msg: VSTSystemMessage = system_node.instantiate()
+	msg.set_system_msg(type, data)
+
+	_add_child_to_container(msg)
+
 
 func create_chatter_msg(chatter: VSTChatter):
 	var msg: VSTChatMessage = msg_node.instantiate()
@@ -13,11 +23,13 @@ func create_chatter_msg(chatter: VSTChatter):
 	var badges: String = await get_badges(chatter)
 	chatter.message = escape_bbcode(chatter.message)
 	await add_emotes(chatter)
-
-	var bottom: bool = is_scroll_bottom()
-
 	msg.set_chatter_msg(badges, chatter)
-	chat_message_container.add_child(msg)
+	
+	_add_child_to_container(msg)
+
+func _add_child_to_container(child):
+	var bottom: bool = is_scroll_bottom()
+	chat_message_container.add_child(child)
 	await get_tree().process_frame
 	if bottom: scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
 

@@ -101,6 +101,58 @@ func print_chatter_message(chatter: VSTChatter):
 	print("Message received from %s: %s" % [chatter.tags.display_name, chatter.message])
 ```
 
+## How to receive twitch events
+To receive Twitch event from your chat, connect the `event_happened` signal from VerySimpleTwitch. The signal contains all the information available from the event ( with the type ), including the user and all data from event.
+
+by default VST connects to this events: channel.follow, channel.subscribe, channel.subscription.message, channel.cheer, channel.subscription.gift, channel.raid.
+
+```GDScript
+func _ready():
+	VerySimpleTwitch.event_happened.connect(print_event_message)
+
+func print_event_message(type: String, data:Dictionary):
+	print("Event received (%s) with data: %s" % [type, str(data)])
+```
+
+## Adding more events
+You can add more in settings BUT due the twtich system maybe can fail. This is because version and condition values in the request.
+To make the things simple if you add a new event VST will use default versions of that values. Maybe this will fail and you need to change _get_version_from and _get_condition_from from twtich_events.gd with the new event
+
+For instance, you need a new event called "awesome_event" that use version 2 like "channel.follow" and use "to_user_id" instead "to_broadcaster_user_id". The changes will be:
+```GDScript
+func _get_version_from(type: String) -> String:
+	match type:
+		"channel.follow": 
+			return "2"
+		"awesome_event":
+			return "2"
+		_:
+			return "1"
+
+
+func _get_condition_from(type: String) -> Dictionary:
+	match type:
+		"channel.follow":
+			return {
+				"broadcaster_user_id": channel_info.id,
+				"moderator_user_id": channel_info.id
+			}
+		"channel.raid":
+			return {
+				"to_broadcaster_user_id": channel_info.id
+			}
+		"awesome_event":
+			return {
+				"to_user_id": channel_info.id
+			}
+		_:
+			return {
+				"broadcaster_user_id": channel_info.id
+			}
+			
+```
+
+
 ## How to send chat messages
 To send chat messages, you can use the ``VerySimpleTwitch.send_chat_message("Hello world")`` static method. Sending chat messages is only available when you use the OAuth connection method with a Token that has writing permissions.
 

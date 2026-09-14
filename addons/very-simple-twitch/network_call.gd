@@ -125,8 +125,8 @@ func _launch_network_request(parent: Node):
 	var final_url = _compile_url(url, get_params)
 	var client = HTTPRequest.new()
 	client.timeout = timeout
-	client.request_completed.connect(func():
-		on_request_completed.bind(final_url)
+	client.request_completed.connect(func(a,b,c,d):
+		on_request_completed(a,b,c,d,final_url)
 		client.queue_free()
 	)
 

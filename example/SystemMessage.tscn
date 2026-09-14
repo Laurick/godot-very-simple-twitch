@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://do323kcv2bkvo"]
+
+[ext_resource type="Script" uid="uid://dqvc1w1yn4sfj" path="res://example/SystemMessage.gd" id="1_5fsmi"]
+
+[node name="SystemMessage" type="HBoxContainer" unique_id=2044059440]
+size_flags_horizontal = 3
+script = ExtResource("1_5fsmi")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1373944785]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Testg"
+fit_content = true
+scroll_active = false

@@ -3,9 +3,11 @@ extends Node
 signal token_received(twitch_channel: VSTChannel)
 signal chat_message_received(channel: VSTChatter)
 signal chat_connected(channel_name: String)
+signal event_happened(type: String, data:Dictionary)
 
 var _twitch_api: VSTAPI
 var _twitch_chat: VSTChat
+var _twitch_events: VSTEvents
 
 func login_chat_anon(channel_name: String):
 	_start_chat_client()
@@ -19,9 +21,17 @@ func login_chat(channel_info: VSTChannel):
 	chat_connected.emit(await _twitch_chat.Connected)
 
 
+func _login_event(channel_info: VSTChannel):
+	if !_twitch_events:
+		_twitch_events = VSTEvents.new()
+		_twitch_events.channel_info = channel_info
+		_twitch_events.event_happened.connect(event_happened.emit)
+		add_child(_twitch_events)
+
 func get_token_and_login_chat():
 	var channel_info =  await get_token()
 	await login_chat(channel_info)
+	await _login_event(channel_info)
 
 
 func _start_chat_client():
@@ -36,7 +46,7 @@ func get_token() -> VSTChannel:
 		_twitch_api = VSTAPI.new()
 		add_child(_twitch_api)
 		_twitch_api.initiate_twitch_auth()
-	var channel_info = await _twitch_api.token_received
+	var channel_info:VSTChannel = await _twitch_api.token_received
 	token_received.emit(channel_info)
 	return channel_info
 
