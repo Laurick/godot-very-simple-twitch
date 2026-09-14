@@ -3,26 +3,27 @@
 const BLACKLIST = [
 	'get_script',
 	'has_method',
+	'_to_string',
 ]
 
 
 # ------------------------------------------------------------------------------
-# Combins the meta for the method with additional information.
+# Combines the meta for the method with additional information.
 # * flag for whether the method is local
 # * adds a 'default' property to all parameters that can be easily checked per
 #   parameter
 # ------------------------------------------------------------------------------
-class ParsedMethod:
+class GutParsedMethod:
 	const NO_DEFAULT = '__no__default__'
 
 	var _meta = {}
 	var meta = _meta :
 		get: return _meta
 		set(val): return;
+
 	var is_local = false
-
-	var _parameters = []
-
+	var args = []
+	var return_type_text = 'void'
 
 	func _init(metadata):
 		_meta = metadata
@@ -35,7 +36,22 @@ class ParsedMethod:
 				arg['default'] = _meta.default_args[start_default - i]
 			else:
 				arg['default'] = NO_DEFAULT
-			_parameters.append(arg)
+			args.append(arg)
+
+		return_type_text = _get_return_type(metadata)
+
+	func _get_return_type(meta):
+		var r_meta = meta["return"]
+		var return_keyword = GutConstants.TYPE_KEYWORDS[r_meta.type]
+
+		if(r_meta.type != 0):
+			return_keyword = return_keyword
+		elif(r_meta.usage & PROPERTY_USAGE_NIL_IS_VARIANT != 0):
+			return_keyword = 'Variant'
+		else:
+			return_keyword = 'void'
+
+		return return_keyword
 
 
 	func is_eligible_for_doubling():
@@ -73,10 +89,9 @@ class ParsedMethod:
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-class ParsedScript:
+class GutParsedScript:
 	# All methods indexed by name.
 	var _methods_by_name = {}
-	var _utils = load('res://addons/gut/utils.gd').get_instance()
 
 	var _script_path = null
 	var script_path = _script_path :
@@ -93,24 +108,31 @@ class ParsedScript:
 		get: return _resource
 		set(val): return;
 
-	var _native_instance = null
 
-	var is_native = false :
-		get: return _native_instance != null
+	var _is_native = false
+	var is_native = _is_native:
+		get: return _is_native
 		set(val): return;
 
-	func unreference():
-		if(_native_instance != null):
-			_native_instance.free()
-		return super()
+	var _native_methods = {}
+	var _native_class_name = ""
+	var _native_class = null
+
 
 
 	func _init(script_or_inst, inner_class=null):
 		var to_load = script_or_inst
 
-		if(_utils.is_native_class(to_load)):
+		if(GutUtils.is_native_class(to_load)):
 			_resource = to_load
-			_native_instance = to_load.new()
+			_is_native = true
+			# TODO this could be done with ClassDB instead of making instance.
+			var inst = to_load.new()
+			_native_class = to_load
+			_native_class_name = inst.get_class()
+			_native_methods = inst.get_method_list()
+			if(!inst is RefCounted):
+				inst.free()
 		else:
 			if(!script_or_inst is Resource):
 				to_load = load(script_or_inst.get_script().get_path())
@@ -129,14 +151,14 @@ class ParsedScript:
 
 
 	func _print_flags(meta):
-		print(str(meta.name, ':').rpad(30), str(meta.flags).rpad(4), ' = ', _utils.dec2bistr(meta.flags, 10))
+		print(str(meta.name, ':').rpad(30), str(meta.flags).rpad(4), ' = ', GutUtils.dec2bistr(meta.flags, 10))
 
 
 	func _get_native_methods(base_type):
 		var to_return = []
 		if(base_type != null):
 			var source = str('extends ', base_type)
-			var inst = _utils.create_script_from_source(source).new()
+			var inst = GutUtils.create_script_from_source(source).new()
 			to_return = inst.get_method_list()
 			if(! inst is RefCounted):
 				inst.free()
@@ -146,13 +168,13 @@ class ParsedScript:
 	func _parse_methods(thing):
 		var methods = []
 		if(is_native):
-			methods = _native_instance.get_method_list()
+			methods = _native_methods.duplicate()
 		else:
 			var base_type = thing.get_instance_base_type()
 			methods = _get_native_methods(base_type)
 
 		for m in methods:
-			var parsed = ParsedMethod.new(m)
+			var parsed = GutParsedMethod.new(m)
 			_methods_by_name[m.name] = parsed
 			# _init must always be included so that we can initialize
 			# double_tools
@@ -165,8 +187,9 @@ class ParsedScript:
 		# the right "is_local" flag.
 		if(!is_native):
 			methods = thing.get_script_method_list()
+			methods.reverse()
 			for m in methods:
-				var parsed_method = ParsedMethod.new(m)
+				var parsed_method = GutParsedMethod.new(m)
 				parsed_method.is_local = true
 				_methods_by_name[m.name] = parsed_method
 
@@ -260,7 +283,7 @@ class ParsedScript:
 	func get_extends_text():
 		var text = null
 		if(is_native):
-			text = str("extends ", _native_instance.get_class())
+			text = str("extends ", _native_class_name)
 		else:
 			text = str("extends '", _script_path, "'")
 			if(_subpath != null):
@@ -268,16 +291,17 @@ class ParsedScript:
 		return text
 
 
+
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 var scripts = {}
-var _utils = load('res://addons/gut/utils.gd').get_instance()
 
 
 func _get_instance_id(thing):
 	var inst_id = null
 
-	if(_utils.is_native_class(thing)):
+	if(GutUtils.is_native_class(thing)):
 		var id_str = str(thing).replace("<", '').replace(">", '').split('#')[1]
 		inst_id = id_str.to_int()
 	elif(typeof(thing) == TYPE_STRING):
@@ -307,8 +331,8 @@ func parse(thing, inner_thing=null):
 			if(inner_thing != null):
 				inner = instance_from_id(_get_instance_id(inner_thing))
 
-			if(obj is Resource or _utils.is_native_class(obj)):
-				parsed = ParsedScript.new(obj, inner)
+			if(obj is Resource or GutUtils.is_native_class(obj)):
+				parsed = GutParsedScript.new(obj, inner)
 				scripts[key] = parsed
 
 	return parsed
