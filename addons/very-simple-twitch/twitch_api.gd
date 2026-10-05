@@ -52,7 +52,7 @@ func _on_auth_server_on_token_received(token) -> void:
 		return
 	_user = validated_user
 	print("client: "+str(_client_id))
-	print("toekn: "+str(_user.token))
+	print("token: "+str(_user.token))
 	print("id: "+str(_user.id))
 	token_received.emit(_user)
 

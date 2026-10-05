@@ -5,10 +5,10 @@ signal event_happened(type:String, data:Dictionary)
 
 const USE_MOCK_SERVER := true  # cambia esto para alternar
 
-const TWITCH_EVENTS_URL := "ws://127.0.0.1:8080/ws"
-const TWITCH_EVENTS_SUBCRIPTIONS := "http://127.0.0.1:8080/eventsub/subscriptions"
-#const TWITCH_EVENTS_URL = "wss://eventsub.wss.twitch.tv/ws"
-#const TWITCH_EVENTS_SUBCRIPTIONS = "https://api.twitch.tv/helix/eventsub/subscriptions"
+#const TWITCH_EVENTS_URL := "ws://127.0.0.1:8080/ws"
+#const TWITCH_EVENTS_SUBCRIPTIONS := "http://127.0.0.1:8080/eventsub/subscriptions"
+const TWITCH_EVENTS_URL = "wss://eventsub.wss.twitch.tv/ws"
+const TWITCH_EVENTS_SUBCRIPTIONS = "https://api.twitch.tv/helix/eventsub/subscriptions"
 
 var socket:WebSocketPeer
 var session_id:String = ""
