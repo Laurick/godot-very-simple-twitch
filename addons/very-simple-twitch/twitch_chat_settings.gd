@@ -59,9 +59,6 @@ const settings: Dictionary = {
 		"hint_string": "%d:" % TYPE_STRING,
 		"help": "Scopes that will be asked when the token is retrieved",
 		"is_basic": true,
-<<<<<<< Updated upstream
-		"initial_value": ["moderator:manage:banned_users", "chat:read", "channel:manage:vips"],
-=======
 		"initial_value": ["moderator:manage:banned_users","chat:read", "channel:manage:vips", "bits:read", "channel:read:subscriptions", "moderator:read:followers"],
 	},
 	"events": {
@@ -70,7 +67,6 @@ const settings: Dictionary = {
 		"hint_string": "Events to suscribe ( check scopes maybe you will need another if you add new ones )",
 		"is_basic": true,
 		"initial_value": ["channel.follow", "channel.subscribe", "channel.subscription.message", "channel.cheer", "channel.subscription.gift", "channel.raid"],
->>>>>>> Stashed changes
 	},
 	"twitch_chat_url":
 	{
