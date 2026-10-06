@@ -64,7 +64,9 @@ const settings: Dictionary = {
 	"events": {
 		"path": "config/events",
 		"type": TYPE_PACKED_STRING_ARRAY,
-		"hint_string": "Events to suscribe ( check scopes maybe you will need another if you add new ones )",
+		"hint": PROPERTY_HINT_TYPE_STRING,
+		"hint_string": "%d:" % TYPE_STRING,
+		"help": "Events to suscribe ( check scopes maybe you will need another if you add new ones )",
 		"is_basic": true,
 		"initial_value": ["channel.follow", "channel.subscribe", "channel.subscription.message", "channel.cheer", "channel.subscription.gift", "channel.raid"],
 	},

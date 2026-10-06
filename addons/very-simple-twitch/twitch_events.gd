@@ -18,9 +18,8 @@ var _client_id:String
 var _debug_messages:bool = true
 
 func _ready():
-	socket = WebSocketPeer.new()
 	_client_id = VSTSettings.get_setting(VSTSettings.settings.client_id)
-
+	_connect_to_events_server()
 
 func _process(_delta):
 	if !socket:
@@ -41,13 +40,15 @@ func _process(_delta):
 			print('Reconecting...')
 			_connect_to_events_server()
 
-
+ 
 func _connect_to_events_server():
+	if not socket:
+		socket = WebSocketPeer.new()
 	socket.connect_to_url(TWITCH_EVENTS_URL)
 
 
 func _handle_message(raw: String):
-	print("message: "+raw)
+	_print_debug_info("message: "+raw)
 	var json = JSON.parse_string(raw)
 	if json == null:
 		return
