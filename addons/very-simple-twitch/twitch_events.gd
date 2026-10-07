@@ -15,7 +15,7 @@ var session_id:String = ""
 var channel_info:VSTChannel
 var _client_id:String
 
-var _debug_messages:bool = true
+var _debug_messages:bool = false
 
 func _ready():
 	_client_id = VSTSettings.get_setting(VSTSettings.settings.client_id)
